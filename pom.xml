@@ -1,0 +1,60 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>jurgen</groupId>
+    <artifactId>generator-test</artifactId>
+    <version>1.0.0</version>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.jooq</groupId>
+                <artifactId>jooq-codegen-maven</artifactId>
+                <version>3.11.4</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jooq</groupId>
+                        <artifactId>jooq-meta-extensions</artifactId>
+                        <version>3.11.4</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <logging>WARN</logging>
+                    <generator>
+                        <generate>
+                            <pojos>false</pojos>
+                            <daos>false</daos>
+                        </generate>
+                        <database>
+                            <name>org.jooq.meta.extensions.ddl.DDLDatabase</name>
+                            <properties>
+                                <property>
+                                    <key>scripts</key>
+                                    <value>src/main/resources/db/migration/V1.1__initial.sql</value>
+                                </property>
+                                <property>
+                                    <key>sort</key>
+                                    <value>semantic</value>
+                                </property>
+                            </properties>
+                        </database>
+                        <target>
+                            <packageName>generatortest.schema</packageName>
+                        </target>
+                    </generator>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+
+</project>
